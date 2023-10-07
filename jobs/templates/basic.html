@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+  /* Define reusable CSS variables */
+      :root {
+        --primary-background-color: #FFFFFF; /* White background */
+        --primary-text-color: #333333; /* Dark Gray text */
+        --accent-color: #4f868c; /* Teal accent color */
+        --accent-text-color: #FFFFFF; /* White text for accents */
+        --highlight-color: #FBAD30; /* Gold/Yellow for highlights */
+        --secondary-accent-color: #008000; /* Green secondary accent color */
+      }
+
+      /* Reset some default styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: var(--primary-background-color);
+      }
+
+      /* Navigation bar */
+      .navbar {
+        background-color: var(--accent-color);
+        padding: 10px 0;
+      }
+
+      .navbar a {
+        color: var(--accent-text-color);
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 18px;
+      }
+
+      /* Page header */
+      .head1 {
+        color: var(--highlight-color);
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      /* Subheader */
+      .head2 {
+        color: var(--secondary-accent-color);
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      /* Container for content */
+      .container {
+        background-color: var(--primary-background-color);
+        padding: 20px;
+        margin: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+
+      /* Example button styling */
+      .btn {
+        background-color: var(--accent-color);
+        color: var(--accent-text-color);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: darken(var(--accent-color), 10%); /* Slightly darker on hover */
+      }
+
+  </style>
+  {% block css %}
+  {% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark sticky-top">
+      <a class="navbar-brand" href="/"><span class="head1">G1</span></a>
+      <a class="navbar-brand" href="#"><span class="head2">Career</span><span class="head1"> Portal</span></a>
+      <div class="container-fluid w-50">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link {% block home %} {% endblock %}" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block user_login %} {% endblock %}" href="/user_login/">User Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block admin_login %} {% endblock %}" href="/admin_login/">Admin Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block company_login %} {% endblock %}" href="/company_login/">Company Login</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" href="/logout/">Logout</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  {% block body %}
+  {% endblock %}
+</body>
+{% block js %}
+{% endblock %}
+
+</html>
