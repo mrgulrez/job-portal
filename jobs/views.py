@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 from django.contrib import messages
+from .forms import ApplicantForm
 
 def index(request):
     return render(request, "footer.html")
@@ -39,6 +40,7 @@ def user_homepage(request):
         gender = request.POST['gender']
 
         applicant.user.email = email
+        applicant.user.username = email
         applicant.user.first_name = first_name
         applicant.user.last_name = last_name
         applicant.phone = phone
@@ -55,6 +57,25 @@ def user_homepage(request):
         alert = True
         return render(request, "user_homepage.html", {'alert':alert})
     return render(request, "user_homepage.html", {'applicant':applicant})
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ApplicantForm(request.POST, instance=request.user)
+        if form.is_valid():
+            new_username = form.cleaned_data["username"]
+
+            if User.objects.filter(username=new_username).exclude(id=request.user.id).exists():
+                messages.error(request, 'Username is already in use.')
+            else:
+                form.save()
+                messages.success(request, 'Profile updated successfully.')
+                return redirect('user_homepage')
+    else:
+        form = ApplicantForm(instance=request.user)
+
+    return render(request, 'edit_profile.html', {'form': form})
+
+
 
 def all_jobs(request):
     jobs = Job.objects.all().order_by('-start_date')
