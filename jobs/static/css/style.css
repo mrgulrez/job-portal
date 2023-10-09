@@ -1,0 +1,151 @@
+/* Common styles */
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+.primary-color {
+    color: #007bff;
+}
+
+.secondary-color {
+    color: #6c757d;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Form styles */
+
+form {
+    font-weight: 500;
+   font-style: italic;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* Navbar styles */
+.navbar {
+    background-color: #007bff;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.navbar .logo {
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.navbar-brand {
+    color: #FBAD30;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #EF4926;
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    background-color: #4f868c;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.footer a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .logo {
+    height: 30px;
+    margin-right: 1rem;
+}

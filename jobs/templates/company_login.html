@@ -1,0 +1,58 @@
+{% extends 'basic.html' %}
+
+{% block title %}Recruiter Login{% endblock %}
+{% block company_login %}active{% endblock %}
+{% block css %}
+    <!-- You can add CSS specific to this page if needed -->
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .btn-signup {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="container mt-5">
+        <h2 class="text-center">Recruiter Login</h2>
+        <div class="mb-3">
+            <label for="username" class="form-label"><strong>Email</strong></label>
+            <input type="email" class="form-control" id="username" name="username" placeholder="Enter Email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"><strong>Password</strong></label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+        <p class="text-center">Don't have an account? <a href="/company_signup/">Sign Up</a></p>
+    </div>
+</form>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Invalid Credentials. Please try again.");
+    window.location.href = "/company_login";
+    {% endif %}
+</script>
+{% endblock %}

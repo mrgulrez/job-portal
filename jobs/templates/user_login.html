@@ -1,0 +1,59 @@
+{% extends 'basic.html' %}
+
+{% block title %} User Login Page {% endblock %}
+{% block user_login %} active {% endblock %}
+{% block css %}
+
+       <style>
+            .container {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+            }
+    
+            .form-control {
+                margin-bottom: 15px;
+            }
+    
+            .btn {
+                width: 100%;
+            }
+    
+            .btn-signup {
+                margin-top: 10px;
+            }
+        </style>
+{% endblock %}
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container mt-5">
+            <h2 class="text-center">User Login</h2>
+            <div class="mb-3">
+                <label for="username" class="form-label"><i strong>Email</i></label>
+                <input type="email" class="form-control" id="username" name="username" placeholder="Enter Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"><i strong>Password</i></label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+            <p class="text-center">Don't have an account? <a href="/signup/">Sign Up</a></p>
+        </div>
+    </form>
+</form>
+{% endblock %}
+{% block js %}
+<script>
+    {% if thank %}
+    alert("Invalid Credentials. Please try again.");
+    window.location.href = "/user_login"
+    {% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'basic.html' %}
+
+{% block title %} User Signup Page {% endblock %}
+{% block user_login %} active {% endblock %}
+{% block css %}
+<style>
+    /* Custom CSS for additional styling */
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-check-label {
+        font-weight: normal;
+    }
+
+    .btn-submit {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+        font-size: larger;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .error-message {
+        color: #d9534f;
+        font-size: 12px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center">User Signup</h2>
+    <form method="POST" enctype="multipart/form-data" id="signup-form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First Name" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" class="form-control" name="password1" id="password1" placeholder="Enter Password" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm Password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Email Id</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Id" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Contact Number" required>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" name="gender" id="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="image">Profile Picture</label>
+                    <input type="file" class="form-control" name="image" id="image" accept="image/*" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-submit" id="signup-button">Sign Up</button>
+        </div>
+        <div class="text-center">
+            <p class="error-message" id="error-message"></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("signup-form").addEventListener("submit", function (e) {
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
+        if (password1 !== password2) {
+            e.preventDefault();
+            document.getElementById("error-message").innerText = "Passwords do not match.";
+        }
+    });
+</script>
+{% endblock %}

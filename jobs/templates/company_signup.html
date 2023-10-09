@@ -1,0 +1,146 @@
+{% extends 'basic.html' %}
+
+{% block title %} Company Signup {% endblock %}
+{% block company_login %} active {% endblock %}
+{% block css %}
+<style>
+    /* Custom CSS for the Company Signup page */
+    .container {
+        max-width: 80vw;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        background-color: #4f868c;
+        color: white;
+        font-size: larger;
+        width: 8rem;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2 class="text-center">Company Signup</h2>
+    <form method="POST" enctype="multipart/form-data" onsubmit="return validatePassword()">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First Name" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" class="form-control" name="password1" id="password1" placeholder="Enter Password" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm Password" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Email Id</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Id" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Contact Number" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gender">Select Gender</label>
+                    <select class="form-control" name="gender" id="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="image">Logo of the Company</label>
+                    <input type="file" class="form-control" name="image" id="image" accept="image/*" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="company_name">Company Name</label>
+            <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Enter Name of the Company" required>
+        </div>
+
+        <br>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn" id="signup-button">Sign Up</button>
+        </div>
+        <div class="text-center">
+            <p class="error-message" id="error-message"></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    function validatePassword() {
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
+
+        if (password1 !== password2) {
+            document.getElementById("error-message").innerText = "Passwords do not match.";
+            return false;
+        } else if (password1.length < 8) {
+            document.getElementById("error-message").innerText = "Password must be at least 8 characters long.";
+            return false;
+        } else if (!/[A-Z]/.test(password1)) {
+            document.getElementById("error-message").innerText = "Password must contain at least one uppercase letter.";
+            return false;
+        } else if (!/[a-z]/.test(password1)) {
+            document.getElementById("error-message").innerText = "Password must contain at least one lowercase letter.";
+            return false;
+        } else if (!/\d/.test(password1)) {
+            document.getElementById("error-message").innerText = "Password must contain at least one number.";
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
+{% endblock %}

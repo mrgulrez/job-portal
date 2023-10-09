@@ -1,0 +1,133 @@
+{% extends 'basic.html' %}
+
+{% block title %}About Us - Udaan{% endblock %}
+
+{% block css %}
+<style>
+    /* Custom CSS styles for the About Us page go here */
+    .about-section {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+    }
+
+    .about-heading {
+        font-size: 30px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .about-content {
+        font-size: 18px;
+        color: #555;
+    }
+
+    /* Styles for the navigation buttons */
+    .nav-button {
+        cursor: pointer;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="about-section">
+                <h2 class="about-heading">About Us</h2>
+                <p class="about-content">
+                    Welcome to Udaan, your go-to job portal for finding exciting opportunities in the tech industry.
+                    We are passionate about connecting talented individuals with companies that share their passion
+                    for innovation and technology. Our mission is to make the job search process as seamless as
+                    possible, whether you are looking for internships, full-time positions, part-time work, freelance
+                    gigs, or the flexibility of remote jobs.
+                </p>
+                <p class="about-content">
+                    At Udaan, we understand the unique needs of both job seekers and employers in the tech
+                    sector. We strive to provide a platform where candidates can showcase their skills and
+                    experiences and where companies can discover top talent that aligns with their goals and
+                    values.
+                </p>
+                <p class="about-content">
+                    Our team is dedicated to creating a user-friendly experience, offering valuable resources,
+                    and fostering a supportive community for everyone involved in the tech job market. Whether
+                    you're a recent graduate, an experienced professional, or a company looking to hire, Udaan
+                    is here to help you succeed.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation buttons for different sections -->
+    <div class="row mt-4">
+        <div class="col-lg-12 text-center">
+            <button class="nav-button" id="mission-button">Our Mission</button>
+            <button class="nav-button" id="team-button">Our Team</button>
+            <button class="nav-button" id="contact-button">Contact Us</button>
+        </div>
+    </div>
+
+    <!-- Section: Our Mission -->
+    <div class="row mt-4" id="mission-section" style="display: none;">
+        <div class="col-lg-12">
+            <h2 class="about-heading">Our Mission</h2>
+            <p class="about-content">
+                Our mission is to make the job search process as seamless as possible.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section: Our Team -->
+    <div class="row mt-4" id="team-section" style="display: none;">
+        <div class="col-lg-12">
+            <h2 class="about-heading">Our Team</h2>
+            <p class="about-content">
+                Meet our dedicated team members who work tirelessly to support you.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section: Contact Us -->
+    <div class="row mt-4" id="contact-section" style="display: none;">
+        <div class="col-lg-12">
+            <h2 class="about-heading">Contact Us</h2>
+            <p class="about-content">
+                Have questions or need assistance? Reach out to us anytime.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript code to toggle between sections
+    const missionButton = document.getElementById('mission-button');
+    const teamButton = document.getElementById('team-button');
+    const contactButton = document.getElementById('contact-button');
+    const missionSection = document.getElementById('mission-section');
+    const teamSection = document.getElementById('team-section');
+    const contactSection = document.getElementById('contact-section');
+
+    missionButton.addEventListener('click', () => {
+        missionSection.style.display = 'block';
+        teamSection.style.display = 'none';
+        contactSection.style.display = 'none';
+    });
+
+    teamButton.addEventListener('click', () => {
+        missionSection.style.display = 'none';
+        teamSection.style.display = 'block';
+        contactSection.style.display = 'none';
+    });
+
+    contactButton.addEventListener('click', () => {
+        missionSection.style.display = 'none';
+        teamSection.style.display = 'none';
+        contactSection.style.display = 'block';
+    });
+</script>
+{% endblock %}
