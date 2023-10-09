@@ -3,21 +3,97 @@
 {% block title %} Job Portal {% endblock %}
 {% block home %} active {% endblock %}
 {% block css %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% endblock %}
+
 {% block body %}
 {% load static %}   
 <div class="container-fluid mt-2">
     <img src="{% static 'Recruitment Vector.png' %}" alt="" width="100%" height="450px">
 </div>
-    <div class="container-fluid mt-2" style="background-color: #4f868c; width: 100%;">
-        <div class="row">
-            <div class="col-md-4">
-                <h3 style="color: aliceblue;">Contact Us</h3>
-                <p style="color: aliceblue">Email:&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abc@gmail.com</p>
-                <p style="color: aliceblue">Mobile No.:&nbsp;&nbsp;+9123456789</p>
+
+<footer class="custom-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:contact@jobportal.com">contact@jobportal.com</a></p>
+                <p>Phone: <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul class="links-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/job_list">Find Jobs</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="follow-us">
+                <h3>Follow Us</h3>
+                <ul class="social-icons">
+                    <li><a href="#" class="icon-facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#" class="icon-twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" class="icon-linkedin"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <div class="quote">
+                <i class="fas fa-quote-left"></i>
+                <p>Your adventure begins with us!</p>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 JobPortal. All Rights Reserved.</p>
+            </div>
+            <div class="subscribe">
+                <h3>Subscribe to Updates</h3>
+                <form id="subscribe-form">
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="subscribe-success" id="subscribe-success"></p>
+            </div>
     </div>
+</footer>
+
+
+
+<script> 
+    document.getElementById("subscribe-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        // Get the user's email input
+        const email = document.getElementById("email").value;
     
+        // Send the email to your server (simulated here with a fetch request)
+        fetch("/your-server-endpoint", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // If the server stores the email successfully
+                const successMessage = document.getElementById("subscribe-success");
+                successMessage.textContent = `Thank you for subscribing with email: ${email}`;
+                // Reset the input field
+                document.getElementById("email").value = "";
+            } else {
+                // Handle the case where the server encountered an error
+                console.error("Server error:", data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Request failed:", error);
+        });
+    });
+    
+
+</script>
+
 {% endblock %}
