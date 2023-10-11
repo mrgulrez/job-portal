@@ -12,7 +12,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/JobPortal/wsgi.py"
+        "dest": "JobPortal/wsgi.py"
       }
     ]
   }
