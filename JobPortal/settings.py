@@ -15,7 +15,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG" , default=False, cast=bool)
 
-ALLOWED_HOSTS = ['.vercel.app', '.netlify.app', '127.0.0.1', 'https://mrgulrez.tech/',]
+ALLOWED_HOSTS = ['.vercel.app', 'mrgulrez.tech', '.netlify.app']
 
 
 # Application definition
