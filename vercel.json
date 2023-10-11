@@ -1,29 +1,29 @@
 {
-    "builds": [
-      {
-        "src": "JobPortal/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb",
-          "runtime": "python3.9"
-        }
-      },
-      {
-        "src": "build.sh",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "JobPortal/staticfiles_build"
-          }
+  "builds": [
+    {
+      "src": "JobPortal/wsgi.py",
+      "use": "@vercel/python",   // Use the Python runtime
+      "config": {
+        "maxLambdaSize": "15mb", // Limit the Lambda function size to 15MB
+        "runtime": "python3.9"   // Use Python 3.9
       }
-    ],
-    "routes": [
-      {
-        "src": "/static/(.*)",
-        "dest": "JobPortal/static/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "JobPortal/wsgi.py"
+    },
+    {
+      "src": "build.sh",
+      "use": "@vercel/static-build", // Use static site builder
+      "config": {
+        "distDir": "JobPortal/staticfiles_build" // Specify the directory for static files
       }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "JobPortal/static/$1" // Route requests for static files to the specified directory
+    },
+    {
+      "src": "/(.*)",
+      "dest": "JobPortal/wsgi.py" // Route other requests to your WSGI application
+    }
+  ]
+}
